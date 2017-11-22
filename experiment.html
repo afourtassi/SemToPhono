@@ -1,0 +1,345 @@
+<!-- ## Code -->
+<html>
+<head>
+	<title>Form/Concept experiment </title>
+	<!-- Include the [jQuery library](http://jquery.com/), which helps you manipulate HTML elements from JS. -->
+	<script src="jquery-1.11.2.min.js"></script>
+	<!-- [mmturkey]: http://github.com/longouyang/mmturkey -->
+	<script src="mmturkey-0.6.js"></script>
+	<link rel="stylesheet" href="style.css" />
+    <link href="lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="lib/colorpicker/colorpicker.css" type="text/css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="lib/colorpicker/layout.css" />
+
+</head>
+<body>
+    
+<script type='text/javascript' src='lib/jquery-2.0.3.min.js'></script>
+<script type='text/javascript' src='lib/jquery-ui.js'></script>
+<script type="text/javascript" src="lib/colorpicker/colorpicker.js"></script>
+<script type="text/javascript" src="lib/eye.js"></script>
+<script type="text/javascript" src="lib/colorpicker/colorpicker.js"></script>
+<script type='text/javascript' src='lib/raphael.js'></script>
+<script type='text/javascript' src='ecosystem.js'></script>
+<script type="text/javascript" src="lib/eye.js"></script>
+<script type="text/javascript" src="lib/utils.js"></script>
+<script type="text/javascript" src="lib/colorpicker/layout.js?ver=1.0.2"></script>
+
+
+<!-- The s slide. -->
+<div class="slide" id="instructions">
+  <div style="width: 500px; margin: 0 auto; text-align: center; background-color: #8C1516; padding: 20px 15px 10px 10px">
+    <img src="images/stanford.png" height="46" width="360" alt="Stanford University">
+  </div>
+		<p id='logo-text'>Stanford Language and Cognition Lab</p>
+	<p class="block-text">
+        This is an experiment that tests aspects of human word learning. The experiment involves audio sequences. Please make sure that no music is played in the background. Put your headphones on or make sure you are in a quiet environment.
+        </p>
+
+
+	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. -->
+	<button type="button" onclick="this.blur(); experiment.next()">Start</button>
+	<!-- Legal blurb that we're required to show. -->
+
+     <!--<p class="block-text"><br> <b> Note: you won't be able to preview this HIT before accepting it because it's so short. </b></p>-->
+
+  <p class="block-text" id="legal">By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Note however that we have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.</p>
+    
+</div>
+
+
+    
+<!-- The stage  norm-->  
+<div class="slide" id="stage_discrim" style="display:table;">
+
+    <audio id='sound_left_d' autoplay='autoplay'></audio>
+    <audio id='sound_right_d' autoplay='autoplay'></audio>
+
+    <table id="hello_d" width="80%" border="0" cellspacing="20" cellpadding="0" align="center">
+        <tr>
+        <td valign="top">
+
+    <div id="word_left_d">
+
+    </div>
+    <div id="word_right_d">
+
+    </div>
+
+    </td>
+</tr>
+        <tr>
+<td valign="bottom">
+
+        <div id="answer_left_d">
+            <p id="same_d" align="center"><font size="6">Same</font></p>
+     </div>
+    
+        <div id="answer_right_d">
+            <p id="diff_d" align="center"><font size="6">Different</font></p>
+     </div>
+    </td>    
+            
+            </tr>
+        
+</table>
+
+</div>
+    
+<!-- Learning phase -->  
+<div class="slide" id="stage" style="display:table;">
+
+    <audio id='sound_left' autoplay='autoplay'></audio>
+    <audio id='sound_right' autoplay='autoplay'></audio>
+
+    <table id="hello" width="80%" border="0" cellspacing="20" cellpadding="0" align="center">
+        <tr>
+        <td valign="top">
+
+    <div id="word_left">
+
+    </div>
+    <div id="word_right">
+
+    </div>
+
+    </td>
+</tr>
+        <tr>
+<td valign="bottom">
+
+        <div id="alien">
+            <p id="pic_alien" align="center"></p>
+     </div>
+    </td>
+            </tr>
+        <tr>
+         <td>
+             <div id="intruct_text0">
+                 <p class="question-text" id="instruct_dynamic">{{}}</p>
+    </div>
+             </td>
+</tr>
+</table>
+
+</div>
+
+
+<!-- Testing phase -->    
+<div class="slide" id="Testing" style="display:table;">
+
+    <audio id='sound' autoplay='autoplay'></audio>
+
+    <table id="hello1" width="80%" border="0" cellspacing="20" cellpadding="0" align="center">
+        <tr>
+        <td valign="top">
+
+    <div id="word_l">
+
+    </div>
+            
+    <div id="word_r">
+
+    </div>
+
+    </td>
+</tr>
+        <tr>
+<td valign="bottom">
+
+        <div id="alienT">
+            <p id="pic_alienT" align="center"></p>
+     </div>
+    </td>
+            </tr>
+        <tr>
+         <td>
+             <div id="intruct_text">
+                 <p class="question-text">Select the right object!</p>
+    </div>
+             </td>
+</tr>
+</table>
+
+</div>
+
+
+
+<!-- Instructions for real 1 -->
+<div class="slide" id="Task_instructions">
+
+  <br>
+
+    <p id="MyTask" align="center">{{}}</p> 
+
+  <table align="center">
+    
+      <tr>
+
+      <td>
+          <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
+      </td>
+          </tr>
+      <tr>
+    <td align="center">
+      <button type="button" id="nextButton_choice" onClick="this.blur(); experiment.next()"> Continue</button>
+    </td>
+    <tr><td align="center">
+
+    </td></tr>
+
+  </table>
+
+</div>
+    
+<!-- Instructions for test items (uses key press instead of click)-->
+<div class="slide" id="Task_instructions_test">
+
+  <br>
+
+    <p id="MyTask_test" class="block-text" align="center">{{}}</p> 
+
+  <table align="center">
+      <tr>
+
+      <td>
+          <p><center><img src='images/alien1.png' height='120' width='200'></center> </p>
+      </td>
+          </tr>
+      <tr>
+    <td align="center">
+      <p class="question-text">Press <span class='space-next'>Space</span></p>
+    </td>
+    <tr><td align="center">
+
+    </td></tr>
+
+  </table>
+
+</div>
+    
+    
+  
+    
+<!-- Experiment with the scale of objects beforehand-->
+<div class="slide" id="scale_slide">
+
+    <p id="my_scale_inst" class="block-text" align="center">{{}}</p>
+    
+<table align="center">
+      <tr>
+      <td>
+          </td>
+      <td align="center">
+         <div id="category"></div> 
+      </td>
+      <td></td>
+          </tr>
+      <tr>
+          <td>prototype 1</td>
+    <td align="center">
+	<div class='slider' id='prop'></div>
+    </td>
+          <td>prototype 2</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="center">
+    <button type="button" onClick="this.blur(); experiment.next()"> Continue</button>
+    </td>
+    <td></td>
+    </tr>
+
+  </table>
+
+</div>
+    
+    
+    
+    
+<!-- Briefing-->   
+<div class="slide" id="briefing">
+    <br><p><center>You have finished the experiment. Thank you for your participation!<br> Before submitting the data, please answer the following questions. <br>The answers are totally confidential and will not affect the approval of your HIT</center></p>
+    
+    <p><b>What is your age?</b></p>
+                  <p>
+                    <select name="age" id="age" form="demographics">
+                      <option value="">Choose an age</option>
+                      <option value="0-10">&nbsp;0-10</option>
+                      <option value="20-29">10-19</option>
+                      <option value="20-29">20-29</option>
+                      <option value="30-39">30-39</option>
+                      <option value="40-49">40-49</option>
+                      <option value="50-59">50-59</option>
+                      <option value="60-69">60-69</option>
+                      <option value="70-79">70-79</option>
+                      <option value="80-89">80-89</option>
+                      <option value="&gt;90">90+</option>
+                    </select>
+                  </p>
+    
+    <p><b>What is your gender?</b></p>
+                  <p>
+                    <select name="gender" id="gender" form="demographics">
+                      <option value="">Choose a gender</option>
+                      <option value="M">Female</option>
+                      <option value="F">Male</option>
+                      <option value="O">Other</option>
+                    </select>
+                  </p>
+    
+    <p><b>Is English your native (fisrt) language?</b></p>
+                  <p>
+                    <select name="native" id="native" form="demographics">
+                      <option value="">Choose an answer</option>
+                      <option value="yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </p>
+
+    <p><b>Were you exposed to one of these languages in your early childhood: Arabic or Hindi? (whether or not you ended up speaking the language)  </b></p>
+                  <p>
+                    <select name="second" id="second" form="demographics">
+                      <option value="">Choose an answer</option>
+                      <option value="yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </p>
+    
+    <p><b>Did you experience any technical problem with the experiment at any point?</b></p>
+                  <p>
+                    <select name="problem" id="problem" form="demographics">
+                      <option value="">Choose a response</option>
+                      <option value="No">No problem</option>
+                      <option value="Yes">Yes I had a problem</option>
+                
+                    </select>
+                  </p>
+    
+     <p><b>If you answered Yes to the previous question, can you explain what kind of technical problem did you have?</b></p>
+          <p>
+           <textarea type="text" id="ifproblem" style="width:100%" name="problemExp"></textarea>
+          </p>
+    
+    <p><b>[Optional] Do you have any comment about the experiment? (too long? too complicated?,...) </b></p>
+          <p>
+           <textarea type="text" id="comment" style="width:100%" name="comment"></textarea>
+          </p>
+    
+
+      <center><button type="button" id="nextButton_brief" onClick=" this.blur(); experiment.next()"> Submit the results!</button></center>
+</div>  
+    
+
+<!-- The finish slide. -->
+<div class="slide" id="finished">
+	You're finished - thanks for participating! Submitting to Mechanical Turk...
+</div>
+
+<!-- Include the <a href="experiment.html">JavaScript file for the experiment</a>. As written, that script immediately executes commands, so we include it here at the end of the HTML file to ensure that resources referenced by the script actually exist. For instance, one of the immediately executed commands is <code>showSlide("instructions")</code>. If we loaded experiment.js, say, in the <code>head</code> section, <code>showSlide("instructions")</code> would fail because the <code>instructions</code> slide doesn't exist yet. It is possible to load the script in <code>head</code> but you have to ensure that any immediately executed commands, if they rely on potentially uninitialized HTML elements, are _delayed_ until the page is ready, using either [window.onload][onload] or jQuery's more robust [$(document).ready()][domReady]  -->
+<!-- [onload]: https://developer.mozilla.org/en/DOM/window.onload -->
+<!-- [domReady]: http://api.jquery.com/ready/ -->
+<script src="experiment.js"></script>
+
+</body>
+</html>
