@@ -5,6 +5,7 @@
 	<!-- Include the [jQuery library](http://jquery.com/), which helps you manipulate HTML elements from JS. -->
 	<script src="jquery-1.11.2.min.js"></script>
 	<!-- [mmturkey]: http://github.com/longouyang/mmturkey -->
+	<!-- mmturkey is a simple library that can send data from external webpages to Amazon's Mechanical Turk. -->
 	<script src="mmturkey-0.6.js"></script>
 	<link rel="stylesheet" href="style.css" />
     <link href="lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +14,7 @@
 
 </head>
 <body>
-    
+
 <script type='text/javascript' src='lib/jquery-2.0.3.min.js'></script>
 <script type='text/javascript' src='lib/jquery-ui.js'></script>
 <script type="text/javascript" src="lib/colorpicker/colorpicker.js"></script>
@@ -26,7 +27,7 @@
 <script type="text/javascript" src="lib/colorpicker/layout.js?ver=1.0.2"></script>
 
 
-<!-- The s slide. -->
+<!-- The s slide. (Very first slide with start button) -->
 <div class="slide" id="instructions">
   <div style="width: 500px; margin: 0 auto; text-align: center; background-color: #8C1516; padding: 20px 15px 10px 10px">
     <img src="images/stanford.png" height="46" width="360" alt="Stanford University">
@@ -37,19 +38,24 @@
         </p>
 
 
-	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. -->
+	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. 
+	 Note that experiment.next() simply iterates through trials. Defined on line 915 of experiment.js-->
 	<button type="button" onclick="this.blur(); experiment.next()">Start</button>
 	<!-- Legal blurb that we're required to show. -->
 
      <!--<p class="block-text"><br> <b> Note: you won't be able to preview this HIT before accepting it because it's so short. </b></p>-->
 
+
+		 <!-- Include the [jQuery library](http://jquery.com/), which helps you manipulate HTML elements from JS. -->
+
   <p class="block-text" id="legal">By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Note however that we have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.</p>
-    
+
 </div>
 
 
-    
-<!-- The stage  norm-->  
+
+<!-- The stage  norm-->
+<!-- TESTING PHASE 1: USER CHOOSES OPTION SAME VS DIFFERENT. NO IMAGES, JUST AUDIO.-->
 <div class="slide" id="stage_discrim" style="display:table;">
 
     <audio id='sound_left_d' autoplay='autoplay'></audio>
@@ -74,21 +80,23 @@
         <div id="answer_left_d">
             <p id="same_d" align="center"><font size="6">Same</font></p>
      </div>
-    
+
         <div id="answer_right_d">
             <p id="diff_d" align="center"><font size="6">Different</font></p>
      </div>
-    </td>    
-            
+    </td>
+
             </tr>
-        
+
 </table>
 
 </div>
-    
-<!-- Learning phase -->  
+
+<!-- Learning phase -->
+<!-- Correspond the two pieces of audio with different images now-->
 <div class="slide" id="stage" style="display:table;">
 
+<!-- These are the same two pieces of audio that we used in the earlier testing phase: -->
     <audio id='sound_left' autoplay='autoplay'></audio>
     <audio id='sound_right' autoplay='autoplay'></audio>
 
@@ -125,7 +133,8 @@
 </div>
 
 
-<!-- Testing phase -->    
+<!-- 2nd Testing phase -->
+<!-- Same slide as last time-->
 <div class="slide" id="Testing" style="display:table;">
 
     <audio id='sound' autoplay='autoplay'></audio>
@@ -137,7 +146,7 @@
     <div id="word_l">
 
     </div>
-            
+
     <div id="word_r">
 
     </div>
@@ -170,10 +179,10 @@
 
   <br>
 
-    <p id="MyTask" align="center">{{}}</p> 
+    <p id="MyTask" align="center">{{}}</p>
 
   <table align="center">
-    
+
       <tr>
 
       <td>
@@ -191,13 +200,13 @@
   </table>
 
 </div>
-    
+
 <!-- Instructions for test items (uses key press instead of click)-->
 <div class="slide" id="Task_instructions_test">
 
   <br>
 
-    <p id="MyTask_test" class="block-text" align="center">{{}}</p> 
+    <p id="MyTask_test" class="block-text" align="center">{{}}</p>
 
   <table align="center">
       <tr>
@@ -217,21 +226,21 @@
   </table>
 
 </div>
-    
-    
-  
-    
+
+
+
+
 <!-- Experiment with the scale of objects beforehand-->
 <div class="slide" id="scale_slide">
 
     <p id="my_scale_inst" class="block-text" align="center">{{}}</p>
-    
+
 <table align="center">
       <tr>
       <td>
           </td>
       <td align="center">
-         <div id="category"></div> 
+         <div id="category"></div>
       </td>
       <td></td>
           </tr>
@@ -253,14 +262,15 @@
   </table>
 
 </div>
-    
-    
-    
-    
-<!-- Briefing-->   
+
+
+
+
+<!-- Briefing-->
+<!-- End of experiment slide-->
 <div class="slide" id="briefing">
     <br><p><center>You have finished the experiment. Thank you for your participation!<br> Before submitting the data, please answer the following questions. <br>The answers are totally confidential and will not affect the approval of your HIT</center></p>
-    
+
     <p><b>What is your age?</b></p>
                   <p>
                     <select name="age" id="age" form="demographics">
@@ -277,7 +287,7 @@
                       <option value="&gt;90">90+</option>
                     </select>
                   </p>
-    
+
     <p><b>What is your gender?</b></p>
                   <p>
                     <select name="gender" id="gender" form="demographics">
@@ -287,7 +297,7 @@
                       <option value="O">Other</option>
                     </select>
                   </p>
-    
+
     <p><b>Is English your native (fisrt) language?</b></p>
                   <p>
                     <select name="native" id="native" form="demographics">
@@ -305,31 +315,31 @@
                       <option value="No">No</option>
                     </select>
                   </p>
-    
+
     <p><b>Did you experience any technical problem with the experiment at any point?</b></p>
                   <p>
                     <select name="problem" id="problem" form="demographics">
                       <option value="">Choose a response</option>
                       <option value="No">No problem</option>
                       <option value="Yes">Yes I had a problem</option>
-                
+
                     </select>
                   </p>
-    
+
      <p><b>If you answered Yes to the previous question, can you explain what kind of technical problem did you have?</b></p>
           <p>
            <textarea type="text" id="ifproblem" style="width:100%" name="problemExp"></textarea>
           </p>
-    
+
     <p><b>[Optional] Do you have any comment about the experiment? (too long? too complicated?,...) </b></p>
           <p>
            <textarea type="text" id="comment" style="width:100%" name="comment"></textarea>
           </p>
-    
+
 
       <center><button type="button" id="nextButton_brief" onClick=" this.blur(); experiment.next()"> Submit the results!</button></center>
-</div>  
-    
+</div>
+
 
 <!-- The finish slide. -->
 <div class="slide" id="finished">
